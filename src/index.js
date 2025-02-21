@@ -1,19 +1,36 @@
 import "./styles.css";
 
+async function getweather(location) {
+	const APIKEY = "ENTMZQA9EVHW2YTBWGFJYNPDQ";
+	try {
+		const apiResponse = await fetch(
+			`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(location)}?unitGroup=us&key=${APIKEY}&contentType=json`,
+			{ mode: "cors" },
+		);
+		if (!apiResponse.ok) {
+			throw new Error("api response was not okay.. :(");
+		}
+		return apiResponse.json();
+	} catch (error) {
+		console.log(error);
+		return error;
+	}
+}
 
+async function updateWeather(location) {
+	const data = await getweather(location);
+	return data;
+}
 
-// try {
-//     const response = await fetch(
-//         `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(location)}?unitGroup=us&key=${APIKEY}&contentType=json`,
-//         { mode: "cors" },
-//     );
-//     await new Promise((resolve) => setTimeout(resolve, 2000));
-//     if (!response.ok) {
-//         throw new Error("something went wrong in the response was not ok :(");
-//     }
-//     const data = await response.json();
-//     return data;
-// } catch (error) {
-//     console.log(error);
-//     return null;
-// }
+async function runApp() {
+	let data = await updateWeather("brighton co");
+    
+	console.log(data);
+}
+
+function createCard(data)
+{
+    
+}
+
+runApp()

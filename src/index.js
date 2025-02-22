@@ -21,16 +21,16 @@ async function updateWeather(location) {
 	const data = await getweather(location);
 	return data;
 }
+function createCard(data) {}
 
 async function runApp() {
 	let data = await updateWeather("brighton co");
-    
+
 	console.log(data);
+
+	for (let i = 0; i < 7; i++) {
+		console.log(data.days[i]);
+	}
 }
 
-function createCard(data)
-{
-    
-}
-
-runApp()
+runApp();

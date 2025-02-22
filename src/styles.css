@@ -15,14 +15,17 @@ body {
 	background-color: #232529;
 	color: #e2e3e7;
 	font-family: sans-serif;
+	flex-shrink: 0;
 }
 
 .content {
 	display: grid;
-	grid-template-columns: 1fr 4fr 1fr;
+	grid-template-columns: 1fr 8fr 1fr;
+	grid-row: auto;
 	padding-top: 20px;
 	justify-items: center;
 	gap: 10px;
+	flex: 1 0 auto;
 }
 
 .main-content {
@@ -49,8 +52,8 @@ body {
 	background-color: #4f4f4f;
 	/* need to be a cal of width of parent container and padding and gap */
 	display: grid;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
-	height: 300px;
+	grid-template-rows: 1fr 1fr .8fr 1fr;
+	height: 250px;
 	border-radius: 10px;
 	padding: 10px;
 }
@@ -58,7 +61,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 50px;
+	font-size: 35px;
 }
 
 .temp-card {

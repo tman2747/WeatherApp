@@ -145,3 +145,71 @@ body {
 	font-size: large;
 	color: #e2e3e7;
 }
+
+@media (max-width: 1024px) {
+	.weather-content {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.ads {
+		display: none;
+	}
+}
+
+@media (max-width: 768px) {
+	.weather-content {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.search-bar input {
+		width: 100%;
+	}
+	.card {
+		height: 200px;
+	}
+	.title {
+		font-size: 24px;
+	}
+}
+
+@media (max-width: 480px) {
+	.content {
+		display: flex;
+		flex-direction: column;
+		gap: 0px;
+		margin: 0px;
+		padding: 20px;
+	}
+	.weather-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.card {
+		width: 90%;
+		height: auto;
+		padding: 15px;
+	}
+	.day {
+		font-size: 24px;
+	}
+	.current-temp {
+		font-size: 36px;
+	}
+	.search-bar {
+		flex-direction: column;
+		width: 100%;
+	}
+	.search-bar input {
+		border-radius: 10px;
+		margin-bottom: 5px;
+	}
+	.search-bar button {
+		width: 100%;
+		border-radius: 10px;
+	}
+	.ads {
+		display: none;
+		position: relative;
+	}
+}

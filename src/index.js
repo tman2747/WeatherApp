@@ -246,3 +246,49 @@ function runApp() {
 }
 
 runApp();
+window.addEventListener("DOMContentLoaded", () => {
+	runApp();
+
+	if (!navigator.geolocation) {
+		return;
+	}
+
+	navigator.geolocation.getCurrentPosition(
+		async (pos) => {
+			const { latitude, longitude } = pos.coords;
+			try {
+				const geoRes = await fetch(
+					`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}&accept-language=en`,
+					{
+						headers: {
+							"User-Agent":
+								"MyWeatherApp/1.0 (https://github.com/tman2747/WeatherApp)",
+						},
+					},
+				);
+				const geoData = await geoRes.json();
+				const addr = geoData.address || {};
+				const city =
+					addr.city ||
+					addr.town ||
+					addr.village ||
+					addr.county ||
+					addr.state ||
+					addr.country;
+				createweathercontent(city);
+			} catch (err) {
+				console.warn("reverse geocode failed:", err);
+				createweathercontent(`${latitude},${longitude}`);
+			}
+		},
+		(err) => {
+			console.warn("geolocation error:", err.message);
+			return;
+		},
+		{
+			enableHighAccuracy: false,
+			timeout: 5000,
+			maximumAge: 60_000,
+		},
+	);
+});
